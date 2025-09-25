@@ -1,0 +1,5 @@
+Project Name: My Portfolio Website
+
+Tech Stack: 
+Front-end: HTML, CSS, Boostrap, JavaScript
+Back-end: PHP, Laravel

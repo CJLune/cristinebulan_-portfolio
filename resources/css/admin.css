@@ -1,0 +1,125 @@
+/* ---  Search Bar Styles --- */
+
+.nav-search-form .input-group .btn {
+    border-top-right-radius: var(--radius-pill);
+    border-bottom-right-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    background-color: transparent;
+    color: var(--muted);
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nav-search-form .input-group .btn:hover {
+    background-color: color-mix(in oklab, var(--line) 40%, transparent);
+    border-color: color-mix(in oklab, var(--line) 40%, transparent);
+    color: var(--heading);
+    box-shadow: none;
+}
+
+.nav-search-form .input-group .btn:active,
+.nav-search-form .input-group .btn:focus {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 0.25rem color-mix(in oklab, var(--accent) 25%, transparent) !important;
+}
+
+.nav-search-form .form-control {
+    border-top-left-radius: var(--radius-pill);
+    border-bottom-left-radius: var(--radius-pill);
+    border-right: none;
+    border-color: var(--line);
+    background-color: color-mix(in oklab, var(--card) 85%, transparent);
+}
+
+.nav-search-form .form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.25rem color-mix(in oklab, var(--accent) 25%, transparent);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.navbar .nav-icon-btn {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast);
+}
+
+.navbar .nav-icon-btn:hover,
+.navbar .nav-icon-btn:focus {
+    background-color: color-mix(in oklab, var(--line) 40%, transparent);
+}
+
+.dropdown-menu .dropdown-item {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item.active {
+    background-color: var(--rose);
+    color: var(--heading);
+}
+
+.table-row-unread {
+    --bs-table-bg: color-mix(in oklab, var(--blue) 12%, transparent);
+    --bs-table-striped-bg: color-mix(in oklab, var(--blue) 12%, transparent);
+}
+
+.table-hover > tbody > tr.table-row-unread:hover {
+    --bs-table-hover-bg: color-mix(in oklab, var(--blue) 20%, transparent);
+}
+
+
+.btn-info {
+    background-color: var(--sage);
+    border-color: var(--sage);
+    color: #fff;
+    box-shadow: 0 4px 15px color-mix(in oklab, var(--sage) 30%, transparent);
+}
+.btn-info:hover {
+    background-color: color-mix(in oklab, var(--sage) 90%, black);
+    border-color: color-mix(in oklab, var(--sage) 90%, black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px color-mix(in oklab, var(--sage) 35%, transparent);
+}
+.btn-info:active, .btn-info:focus {
+    background-color: color-mix(in oklab, var(--sage) 90%, black) !important;
+    border-color: color-mix(in oklab, var(--sage) 90%, black) !important;
+    color: #fff !important;
+}
+
+.btn-danger {
+    background-color: var(--rose);
+    border-color: var(--rose);
+    color: var(--heading);
+    box-shadow: 0 4px 15px color-mix(in oklab, var(--rose) 40%, transparent);
+}
+.btn-danger:hover {
+    background-color: color-mix(in oklab, var(--rose) 90%, black);
+    border-color: color-mix(in oklab, var(--rose) 90%, black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px color-mix(in oklab, var(--rose) 45%, transparent);
+}
+.btn-danger:active, .btn-danger:focus {
+    background-color: color-mix(in oklab, var(--rose) 90%, black) !important;
+    border-color: color-mix(in oklab, var(--rose) 90%, black) !important;
+    color: #fff !important;
+}
