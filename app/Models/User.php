@@ -47,9 +47,6 @@ class User extends Authenticatable
         ];
     }
 
-    // START: ADD THE NEW RELATIONSHIPS HERE
-    // ===================================================================
-
     /**
      * Get all of the notifications for the user.
      */
@@ -66,6 +63,4 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class)->whereNull('read_at')->orderBy('created_at', 'desc');
     }
 
-    // ===================================================================
-    // END: ADD THE NEW RELATIONSHIPS HERE
 }

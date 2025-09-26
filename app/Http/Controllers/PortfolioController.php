@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Notifications\NewMessageNotification; 
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PortfolioController extends Controller
 {
@@ -73,4 +74,38 @@ class PortfolioController extends Controller
 
         return redirect()->route('contact')->with('success', 'Thank you for your message! I will get back to you as soon as possible.');
     }
+
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $results = collect();
+
+    if ($query) {
+        $articles = Article::where('title', 'LIKE', "%{$query}%")
+                           ->orWhere('excerpt', 'LIKE', "%{$query}%")
+                           ->get();
+                           
+        $projects = Project::where('title', 'LIKE', "%{$query}%")->get();
+
+        $results = $articles->concat($projects);
+    }
+
+    $perPage = 10;
+    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    $currentPageItems = $results->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+    $paginatedResults = new LengthAwarePaginator(
+        $currentPageItems,
+        $results->count(),
+        $perPage,
+        $currentPage,
+        ['path' => LengthAwarePaginator::resolveCurrentPath()]
+    );
+
+    return view('pages.search-results', [
+        'results' => $paginatedResults,
+        'query' => $query
+    ]);
+}
+
 }

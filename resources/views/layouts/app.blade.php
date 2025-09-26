@@ -19,12 +19,15 @@
                 </div>
             </header>
         @endif
-        
-        {{-- END: Header Section --}}
 
         <main class="container py-4">
-            {{-- Content here is injected --}}
-            {{ $slot }}
+            @if (isset($slot))
+      
+                {{ $slot }}
+            @else
+        
+                @yield('content')
+            @endif
         </main>
 
     </body>

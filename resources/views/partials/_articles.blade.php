@@ -11,7 +11,6 @@
                         @if (!empty($article->image_path))
                             <img class="card-img-top rounded" src="{{ asset('storage/' . $article->image_path) }}" alt="{{ $article->title }}" style="height: 200px; object-fit: cover;">
                         @else
-                            {{-- Fallback for articles without an image --}}
                             <img class="card-img-top rounded" src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=1200" alt="Default article image" style="height: 200px; object-fit: cover;">
                         @endif
 

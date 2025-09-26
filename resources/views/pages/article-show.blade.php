@@ -8,7 +8,7 @@
     @section('og_description', $article->excerpt)
     @if($article->image_path)
         
-        @section('og_image', asset('storage/' . $article->image_path)) 
+        @section('og_image', asset('storage/' . $article->image_path))  
 
     @endif
     @section('og_url', route('articles.show', $article))
@@ -31,7 +31,6 @@
                             <div class="text-muted fst-italic small">
                                 <span class="d-inline-block me-3">
                                     Published on 
-                                   
                                     <time datetime="{{ $article->created_at->toIso8601String() }}">
                                         {{ $article->created_at->format('M jS, Y, H:i') }}
                                     </time>
@@ -48,8 +47,7 @@
                             </div>
                      
                         </header>
-                        
-                  
+                         
                         @auth
                             <div class="text-center border rounded p-3 my-4 bg-light">
                                 <a href="{{ route('admin.articles.edit', $article) }}" class="btn btn-info d-inline-flex align-items-center">

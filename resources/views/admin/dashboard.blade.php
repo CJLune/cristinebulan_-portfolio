@@ -54,7 +54,7 @@
                                         <a href="{{ route('articles.show', $article) }}" target="_blank">{{ $article->title }}</a>
                                         
                                         @if ($article->updated_at->gt($article->created_at->addSeconds(1))) 
-                                            {{-- Use gt() for comparison, a Clean Code practice for Carbon objects --}}
+                                           
                                             <small class="d-block text-muted">
                                                 <span class="fw-bold text-success">Updated:</span> 
                                                 <time datetime="{{ $article->updated_at->toIso8601String() }}">
@@ -62,7 +62,6 @@
                                                 </time>
                                             </small>
                                         @else
-                                
                                             <small class="d-block text-muted">
                                                 <span class="fw-bold">Published:</span> 
                                                 <time datetime="{{ $article->created_at->toIso8601String() }}">
@@ -80,8 +79,7 @@
                     </div>
                 </div>
             </div>
-
-         
+  
             <div class="col-lg-4 mb-4">
                 <div class="card">
                     <div class="card-header">Quick Actions</div>
@@ -94,7 +92,6 @@
         </div>
     </div>
 
-    {{-- CSS (Content Preserved) --}}
     @push('styles')
     <style>
         .card-link { text-decoration: none; color: inherit; }

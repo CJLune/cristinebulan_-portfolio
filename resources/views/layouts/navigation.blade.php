@@ -29,7 +29,7 @@
                 </ul>
             @endauth
 
-            {{-- Public links on the right for guests --}}
+            {{-- Public view --}}
             @guest
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -52,11 +52,17 @@
                         <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a>
                     </li>
                 </ul>
+
+            <form action="{{ route('search.public') }}" method="GET" class="d-flex ms-lg-3">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search" value="{{ request('query') }}">
+                <button class="btn btn-outline-secondary" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
+            </button>
+            </form>
             @endguest
-        
-            
+
             @auth
-                <form action="{{ route('search') }}" method="GET" class="nav-search-form d-none d-lg-flex mx-auto" style="width: 100%; max-width: 350px;">
+                <form action="{{ route('admin.search') }}" method="GET" class="nav-search-form d-none d-lg-flex mx-auto" style="width: 100%; max-width: 350px;">
                     <div class="input-group">
                         <input type="search" name="query" class="form-control" placeholder="Search..." aria-label="Search">
                         <button type="submit" class="btn btn-outline-secondary" aria-label="Search">

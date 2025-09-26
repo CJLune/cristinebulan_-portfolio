@@ -7,7 +7,6 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        {{-- Include both app.css (for variables) and the new auth.css --}}
         @vite(['resources/css/app.css', 'resources/css/auth.css', 'resources/js/app.js'])
 
     </head>
@@ -19,8 +18,8 @@
                     <h1 class="auth-title">Admin Portal</h1>
                 </div>
 
-                {{-- The dynamic login/register form content is injected here --}}
                 {{ $slot }}
+                
             </div>
         </div>
 

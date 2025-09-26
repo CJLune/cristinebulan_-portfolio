@@ -21,5 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('load', () => {
   const loader = document.querySelector('.loader-container');
-  loader.classList.add('hide'); // Add a class to hide the loader
+  loader.classList.add('hide'); 
 });

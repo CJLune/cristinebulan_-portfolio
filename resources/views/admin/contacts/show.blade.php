@@ -34,7 +34,6 @@
                 </a>
                 
                 <div>
-
                     @php
                         $subject = rawurlencode('Re: ' . $contact->subject);
                         $body = rawurlencode("\n\n\n---\nOn " . $contact->created_at->format('F j, Y, \a\t g:i a') . ", " . $contact->name . " wrote:\n\n> " . str_replace("\n", "\n> ", $contact->message));

@@ -1,54 +1,51 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\WorkController;
-use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\Admin\SearchController;
 
 // --- PUBLIC ROUTES ---
-Route::get('/', [PortfolioController::class, 'home'])->name('home');
-Route::get('/work', [PortfolioController::class, 'work'])->name('work');
-Route::get('/services', [PortfolioController::class, 'services'])->name('services'); 
-Route::get('/articles', [PortfolioController::class, 'articles'])->name('articles');
-Route::get('/articles/{article:slug}', [PortfolioController::class, 'showArticle'])->name('articles.show');
-Route::get('/about', [PortfolioController::class, 'about'])->name('about');
-Route::get('/contact', [PortfolioController::class, 'contact'])->name('contact');
-Route::get('/creative-lab', [PortfolioController::class, 'creative'])->name('creative');
-Route::post('/contact', [PortfolioController::class, 'submitContact'])->name('contact.submit');
-
+Route::get('/', [\App\Http\Controllers\PortfolioController::class, 'home'])->name('home');
+Route::get('/work', [\App\Http\Controllers\PortfolioController::class, 'work'])->name('work');
+Route::get('/services', [\App\Http\Controllers\PortfolioController::class, 'services'])->name('services');
+Route::get('/articles', [\App\Http\Controllers\PortfolioController::class, 'articles'])->name('articles');
+Route::get('/articles/{article:slug}', [\App\Http\Controllers\PortfolioController::class, 'showArticle'])->name('articles.show');
+Route::get('/about', [\App\Http\Controllers\PortfolioController::class, 'about'])->name('about');
+Route::get('/contact', [\App\Http\Controllers\PortfolioController::class, 'contact'])->name('contact');
+Route::get('/creative-lab', [\App\Http\Controllers\PortfolioController::class, 'creative'])->name('creative');
+Route::post('/contact', [\App\Http\Controllers\PortfolioController::class, 'submitContact'])->name('contact.submit');
+Route::get('/find', [\App\Http\Controllers\PortfolioController::class, 'search'])->name('search.public');
 
 // --- PROTECTED ADMIN & DASHBOARD ROUTES ---
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/search', [SearchController::class, 'search'])->name('search');
-    Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
-    Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
+    Route::post('/notifications/{notification}/read', [\App\Http\Controllers\Admin\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [\App\Http\Controllers\Admin\NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
     
-    // This is the nested group that applies the admin prefix and name prefix to all routes within. 
-    // It keeps the URLs clean and route names organize. 
+    // Admin-only routes with /admin URL prefix and 'admin.' name prefix
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        // Admin Search
+        Route::get('/search', [\App\Http\Controllers\Admin\SearchController::class, 'search'])->name('search');
 
-        // CRUD routes
-        Route::resource('articles', ArticleController::class);
-        Route::resource('work', WorkController::class);
-        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+        // Profile
+        Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        // Contact Messages
+        Route::get('contacts', [\App\Http\Controllers\Admin\ContactController::class, 'index'])->name('contacts.index');
+        Route::get('contacts/confirm-delete-all', [\App\Http\Controllers\Admin\ContactController::class, 'confirmDeleteAll'])->name('contacts.confirmDeleteAll');
+        Route::delete('contacts/delete-all', [\App\Http\Controllers\Admin\ContactController::class, 'destroyAll'])->name('contacts.destroyAll');
+        Route::get('contacts/{contact}', [\App\Http\Controllers\Admin\ContactController::class, 'show'])->name('contacts.show');
+        Route::get('contacts/{contact}/confirm-delete', [\App\Http\Controllers\Admin\ContactController::class, 'confirmDelete'])->name('contacts.confirmDelete');
+        Route::delete('contacts/{contact}', [\App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('contacts.destroy');
+
+        // CRUD for Articles (with confirmation)
+        Route::get('articles/{article}/confirm-delete', [\App\Http\Controllers\ArticleController::class, 'confirmDelete'])->name('articles.confirmDelete');
+        Route::resource('articles', \App\Http\Controllers\ArticleController::class);
         
-        // Routes for contact messages
-        Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
-        Route::get('contacts/confirm-delete-all', [ContactController::class, 'confirmDeleteAll'])->name('contacts.confirmDeleteAll');
-        Route::delete('contacts/delete-all', [ContactController::class, 'destroyAll'])->name('contacts.destroyAll');
-        Route::get('contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
-        Route::get('contacts/{contact}/confirm-delete', [ContactController::class, 'confirmDelete'])->name('contacts.confirmDelete');
-        Route::delete('contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+        // Other CRUD routes
+        Route::resource('work', \App\Http\Controllers\WorkController::class);
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     });
 });
 

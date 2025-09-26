@@ -1,0 +1,29 @@
+Project Name: My Portfolio Website
+
+To Log-in: 
+Email-Address: cristinebulan@web.com
+Password: cristine123
+
+To open: PHP artisan serve, npm run dev
+
+Tech Stack: 
+Front-end: HTML, CSS, Boostrap, JavaScript
+Back-end: PHP, Laravel
+
+Info: 
+
+Public view: A dynamic, responsive website that displays articles, projects, and services to visitors. 
+It includes a custom search functionality to easily find content.
+
+Admin Dashboard: A secure, behind-login area for managing all website content. Key features include:
+
+Content Management: Full CRUD (Create, Read, Update, Delete) capabilities for articles and projects. The Task management will be soon improved. 
+
+Secure Deletion: A robust, two-step confirmation process for deleting items, replacing standard browser popups with a more secure Laravel-based solution.
+
+Dual Search: The application features two distinct search systems: a private search for administrators to find content within the dashboard and a separate, 
+public-facing search for visitors.
+
+Flash Messaging System: The application provides clear feedback to the administrator after actions like creating, updating, or deleting 
+content by using session-based flash messages.
+

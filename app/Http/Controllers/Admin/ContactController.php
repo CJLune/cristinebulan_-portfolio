@@ -13,27 +13,24 @@ class ContactController extends Controller
      */
     public function index(Request $request)
     {
-        // Get the sorting option from the request, default to 'newest'
         $sort = $request->input('sort', 'newest');
 
         $query = Contact::query();
 
-        // Apply sorting based on the selected option
         switch ($sort) {
             case 'oldest':
                 $query->orderBy('created_at', 'asc');
                 break;
+
             case 'unread':
-                // This will order by unread messages first (read_at is null),
-                // then by the newest among them.
                 $query->orderByRaw('read_at IS NULL DESC, created_at DESC');
                 break;
+
             case 'read':
-                // This will order by read messages first (read_at is not null),
-                // then by the newest among them.
                 $query->orderBy('read_at', 'desc')->orderBy('created_at', 'desc');
                 break;
-            default: // 'newest'
+
+            default: 
                 $query->orderBy('created_at', 'desc');
                 break;
         }
@@ -55,8 +52,6 @@ class ContactController extends Controller
         }
         return view('admin.contacts.show', compact('contact'));
     }
-    
-    // ... (keep all your other methods: confirmDelete, destroy, confirmDeleteAll, destroyAll)
     
     public function confirmDelete(Contact $contact)
     {

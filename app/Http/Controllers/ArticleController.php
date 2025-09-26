@@ -41,6 +41,7 @@ class ArticleController extends Controller
         }
 
         Article::create($validated);
+        
         return redirect()->route('admin.articles.index')->with('success', 'Article created successfully!');
     }
 
@@ -71,7 +72,13 @@ class ArticleController extends Controller
         }
 
         $article->update($validated);
+
         return redirect()->route('admin.articles.index')->with('success', 'Article updated successfully!');
+    }
+    
+    public function confirmDelete(Article $article)
+    {
+        return view('admin.articles.confirm-delete', compact('article'));
     }
 
     public function destroy(Article $article)
@@ -81,6 +88,7 @@ class ArticleController extends Controller
         }
 
         $article->delete();
+
         return redirect()->route('admin.articles.index')->with('success', 'Article deleted successfully!');
     }
 }

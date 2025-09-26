@@ -5,11 +5,10 @@
     <div class="container py-5">
         <div class="card">
             <div class="card-body">
-                {{-- MODIFIED: Added enctype for file uploads --}}
+                
                 <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     
-                    {{-- Title Input --}}
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
@@ -18,7 +17,6 @@
                         @enderror
                     </div>
 
-                    {{-- ADDED: Image Upload Input --}}
                     <div class="mb-3">
                         <label for="image" class="form-label">Featured Image</label>
                         <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">

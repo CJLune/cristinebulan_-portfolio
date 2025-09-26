@@ -55,7 +55,7 @@ body {
     border-radius: 4px;
 }
 
-/* --- 2.0 - BASE TYPOGRAPHY & ELEMENTS --- */
+/* --- BASE TYPOGRAPHY & ELEMENTS --- */
 h1, h2, h3, h4, h5, h6,
 .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
     font-family: "Playfair Display", serif;
@@ -72,7 +72,7 @@ a:hover {
     color: color-mix(in oklab, var(--accent) 80%, black);
 }
 
-/* --- 3.0 - LAYOUT HELPERS --- */
+/* --- LAYOUT HELPERS --- */
 .section { 
     padding-top: 6rem; 
     padding-bottom: 6rem;
@@ -104,9 +104,7 @@ main > header.hero:first-child {
     padding-top: 5rem;
 }
 
-/* --- 4.0 - SHARED COMPONENTS --- */
-
-/* 4.1 - Navbar */
+/* Navbar */
 .navbar {
     background: color-mix(in oklab, var(--bg) 75%, transparent);
     backdrop-filter: blur(20px);
@@ -205,7 +203,7 @@ main > header.hero:first-child {
     }
 }
 
-/* 4.2 - Cards */
+/* -------- Cards -------- */
 .card {
     background-color: color-mix(in oklab, var(--card) 85%, transparent);
     backdrop-filter: blur(16px);
@@ -228,7 +226,7 @@ main > header.hero:first-child {
     box-shadow: 0 8px 20px rgba(176, 160, 131, 0.1), 0 20px 45px rgba(176, 160, 131, 0.18);
 }
 
-/* 4.3 - Buttons */
+/* ------- Buttons -------- */
 .btn {
     border-radius: var(--radius-pill);
     padding: 0.85rem 1.75rem;
@@ -313,7 +311,7 @@ main > header.hero:first-child {
     box-shadow: 0 0 0 0.25rem color-mix(in oklab, var(--accent) 25%, transparent);
 }
 
-
+/* ----- Footer Section----- */
 footer {
     border-top: 1px solid var(--line);
     color: var(--muted);
@@ -481,7 +479,7 @@ footer a:hover {
     transform: scale(1.05);
 }
 
-/* --- 7.0 - LOADER --- */
+/* --- LOADER --- */
 .loader-container {
     position: fixed;
     top: 0;

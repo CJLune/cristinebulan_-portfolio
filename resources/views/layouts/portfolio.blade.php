@@ -19,8 +19,15 @@
         @include('layouts.portfolio-navigation')
         
         <main class="flex-grow-1">
-         
+         @if (session('logout_success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('logout_success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             @yield('content')
+
+
         </main>
 
         @include('layouts.portfolio-footer')
